@@ -25,11 +25,11 @@ public class Main {
                             inputTask(scanner);
                             break;
                         case 2:
-                             deleteTask(scanner);
+                            deleteTask(scanner);
                             break;
                         case 3:
-                                showTask(scanner);
-                                break;
+                            showTask(scanner);
+                            break;
                         case 4:
                             dailyBook.showDeletedTasks();
                             break;
@@ -50,6 +50,7 @@ public class Main {
         }
 
     }
+
     static TaskService dailyBook = new TaskService();
 
     /* Метод для ввода задачи. Проверяет ввод с клавиатуры и, в случае ошибки ввода бросает исключение*/
@@ -65,34 +66,39 @@ public class Main {
 
         System.out.println("Выберите повторяемость задачи О-однократная, Д-ежедневная, Н-еженедельная, М-ежемесячная, Г-ежегодная");
         String repeat = scanner.next();
-        try{
-        if (repeat.equals("О")||repeat.equals("Д")||repeat.equals("М")||repeat.equals("Г")){
-            }else{throw new IllegalArgumentException("Введен неверный символ, попробуйте снова");}}
-        catch (IllegalArgumentException e){
+        try {
+            if (repeat.equals("О") || repeat.equals("Д") || repeat.equals("М") || repeat.equals("Г")) {
+            } else {
+                throw new IllegalArgumentException("Введен неверный символ, попробуйте снова");
+            }
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            repeat =scanner.next();
+            repeat = scanner.next();
         }
 
         System.out.println("Введите тип задачи Л-личная, Р-рабочая");
         String type = scanner.next();
 
         try {
-            if ((type.equals("Л"))||type.equals("Р")){
-            }else{throw new IllegalArgumentException("Введен неверный символ, попробуйте снова");}}
-        catch (IllegalArgumentException e){
-        System.out.println(e.getMessage());
-        type =scanner.next();}
+            if ((type.equals("Л")) || type.equals("Р")) {
+            } else {
+                throw new IllegalArgumentException("Введен неверный символ, попробуйте снова");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            type = scanner.next();
+        }
         System.out.println("Введите дату, на которую необходимо показать задачи в формате YYYY-MM-DDTHH:MM:SS");
 
-        String dateTime =scanner.next();
-        try{
-            if (dateTime.matches("[2][0][2-9][2-9][-][01][0-9][-][0-3][0-9][T][0-2][0-9][:][0-5][0-9]:[0-5][0-9]")){
-            }else{
+        String dateTime = scanner.next();
+        try {
+            if (dateTime.matches("[2][0][2-9][2-9][-][01][0-9][-][0-3][0-9][T][0-2][0-9][:][0-5][0-9]:[0-5][0-9]")) {
+            } else {
                 throw new IllegalArgumentException("Неверный формат даты");
-            }}
-        catch (IllegalArgumentException e){
+            }
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            dateTime=scanner.next();
+            dateTime = scanner.next();
         }
         LocalDateTime dateTime1 = LocalDateTime.parse(dateTime);
 
@@ -106,22 +112,23 @@ public class Main {
 
         System.out.println("Введите дату, на которую необходимо показать задачи в формате YYYY-MM-DD");
 
-        String date =scanner.next();
-        try{
-            if (date.matches("[2][0][2-9][2-9][-][01][0-9][-][0-3][0-9]")){
-                    }else{
+        String date = scanner.next();
+        try {
+            if (date.matches("[2][0][2-9][2-9][-][01][0-9][-][0-3][0-9]")) {
+            } else {
                 throw new IllegalArgumentException("Неверный формат даты");
-            }}
-        catch (IllegalArgumentException e){
+            }
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            date=scanner.next();
+            date = scanner.next();
         }
         LocalDate date1 = LocalDate.parse(date);
 
-        dailyBook.showDayTask( date1);    }
+        dailyBook.showDayTask(date1);
+    }
 
     /* Метод удаляет задачу по id*/
-    public static void deleteTask(Scanner scanner){
+    public static void deleteTask(Scanner scanner) {
         System.out.println("Введите id задачи, которую вы собиратесь удалить ");
         int id = scanner.nextInt();
         dailyBook.delete(id);
@@ -129,7 +136,7 @@ public class Main {
     }
 
     /* Метод вызывает ввод с клавиатуры для редактирования названия задачи и описания по id*/
-    public static void editTask(Scanner scanner){
+    public static void editTask(Scanner scanner) {
         System.out.println("Введите id задачи, которую вы собиратесь удалить ");
         int id = scanner.nextInt();
         System.out.println("Введите название задачи и нажмите Enter");
@@ -143,10 +150,11 @@ public class Main {
         dailyBook.editTasks(id, title, description);
 
     }
+
     /* Метод выводит меню*/
     private static void printMenu() {
         System.out.println(
                 "1. Добавить задачу\n2. Удалить задачу \n3. Получить задачу на указанный день \n4. Показать удаленные задачи\n5. Редактировать задачу \n6. Вывести все задачи\n0. Выход"
         );
     }
-    }
+}
