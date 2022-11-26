@@ -55,13 +55,16 @@ public class Main {
 
     /* Метод для ввода задачи. Проверяет ввод с клавиатуры и, в случае ошибки ввода бросает исключение*/
     private static void inputTask(Scanner scanner) {
+        scanner.nextLine();
         System.out.println("Введите название задачи и нажмите Enter");
 
-        String title = scanner.next();
+        String title = scanner.nextLine();
+
+
 
         System.out.println("Введите краткое описание задачи");
 
-        String description = scanner.next();
+        String description = scanner.nextLine();
 
 
         System.out.println("Выберите повторяемость задачи О-однократная, Д-ежедневная, Н-еженедельная, М-ежемесячная, Г-ежегодная");
